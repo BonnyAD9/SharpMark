@@ -1,7 +1,7 @@
 ﻿using SharpMark;
 
 TextReader tr = new StringReader(/* language=markdown */"""
-    some text
+    some text  
     but not full markdown yet
     # Title 1
     new paragraph
