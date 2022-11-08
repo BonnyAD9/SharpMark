@@ -1,7 +1,5 @@
 ﻿using SharpMark;
-using SharpMark.Html;
 
-HtmlWriter hw = new(Console.Out);
-
-hw.Setup();
-hw.End(); 
+TextReader tr = new StringReader("some text\nbut not full markdown yet");
+Markdown md = new(tr, Console.Out);
+md.Process();

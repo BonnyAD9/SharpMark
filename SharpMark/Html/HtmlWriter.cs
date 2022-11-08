@@ -22,7 +22,7 @@ public class HtmlWriter
     {
         if (elem.Type == HtmlTagType.Plain)
         {
-            Out.WriteLine(elem["value"].Replace("\n", '\n' + _indent));
+            Out.WriteLine(_indent + elem["value"].Replace("\n", '\n' + _indent));
             return;
         }
 
