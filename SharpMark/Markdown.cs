@@ -63,9 +63,9 @@ public class Markdown
                 sb.Clear();
             }
 
-            if (prev == '\n' && sb.Length >= 2 && sb[^1] == ' ' && sb[^2] == ' ')
+            if (_cur == '\n' && prev == ' ' && sb.Length > 0 && sb[^1] == ' ')
             {
-                sb.Remove(sb.Length - 2, 2);
+                sb.Remove(sb.Length - 1, 1);
                 sb.Append("\n<br>");
             }
 
