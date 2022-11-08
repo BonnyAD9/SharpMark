@@ -18,11 +18,13 @@ public class HtmlWriter
         Out = @out;
     }
 
-    public void Write(IHtmlElement elem)
+    public void Write(IHtmlElement elem, bool close = false)
     {
         if (elem.Type == HtmlTagType.Plain)
         {
-            Out.WriteLine(_indent + elem["value"].Replace("\n", '\n' + _indent));
+            var str = elem["value"].Replace("\n", '\n' + _indent);
+            if (str.Length > 0)
+                Out.WriteLine(_indent + str);
             return;
         }
 
@@ -31,8 +33,15 @@ public class HtmlWriter
             Out.Write($" {kvp.Key}=\"{kvp.Value}\"");
         Out.WriteLine(">");
 
-        if (elem.Type == HtmlTagType.Double)
-            Indent(elem);
+        if (elem.Type != HtmlTagType.Double)
+            return;
+        
+        Indent(elem);
+        foreach (var e in elem.IterateElements())
+            Write(e, true);
+
+        if (elem.IsClosed || close)
+            Up();
     }
 
     public void Up() => Out.WriteLine($"{_indent = _indent[..^IndentStr.Length]}</{IndentStack.Pop()}>");

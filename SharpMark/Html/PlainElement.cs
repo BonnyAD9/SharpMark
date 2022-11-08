@@ -11,6 +11,10 @@ public class PlainElement : IHtmlElement
 
     public string Name => _value;
 
+    public bool IsClosed => false;
+
+    public IEnumerable<IHtmlElement> IterateElements() => Enumerable.Empty<IHtmlElement>();
+
     public PlainElement(string value)
     {
         _value = value;
@@ -23,4 +27,6 @@ public class PlainElement : IHtmlElement
     }
 
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+    public override string ToString() => Name;
 }
