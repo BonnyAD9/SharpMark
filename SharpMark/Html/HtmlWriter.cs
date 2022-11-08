@@ -51,4 +51,13 @@ public class HtmlWriter
         while (Indentation != 0)
             Up();
     }
+
+    public void Setup()
+    {
+        Write(new PlainElement("<!DOCTYPE html>"));
+        Write(new HtmlElement("html", HtmlTagType.Double));
+        Write(new HtmlElement("head", HtmlTagType.Double));
+        Up();
+        Write(new HtmlElement("body", HtmlTagType.Double));
+    }
 }
