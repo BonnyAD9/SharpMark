@@ -1,6 +1,6 @@
 ﻿namespace SharpMark.Html;
 
-public enum HtmlElementType
+public enum HtmlTagType
 {
     Plain,
     Single,

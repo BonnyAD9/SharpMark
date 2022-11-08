@@ -20,7 +20,7 @@ public class HtmlWriter
 
     public void Write(IHtmlElement elem)
     {
-        if (elem.Type == HtmlElementType.Plain)
+        if (elem.Type == HtmlTagType.Plain)
         {
             Out.WriteLine(elem["value"].Replace("\n", '\n' + _indent));
             return;
@@ -31,7 +31,7 @@ public class HtmlWriter
             Out.Write($" {kvp.Key}=\"{kvp.Value}\"");
         Out.WriteLine(">");
 
-        if (elem.Type == HtmlElementType.Double)
+        if (elem.Type == HtmlTagType.Double)
             Indent(elem);
     }
 

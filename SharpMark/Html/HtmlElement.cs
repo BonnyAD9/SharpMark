@@ -2,21 +2,30 @@
 
 namespace SharpMark.Html;
 
-internal class HtmlElement : IHtmlElement
+public class HtmlElement : IHtmlElement
 {
-    public string this[string param] => throw new NotImplementedException();
+    private Dictionary<string, string> _params;
+    public string this[string param] => _params[param];
 
-    public HtmlElementType Type { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public HtmlTagType Type { get; init; }
 
-    public string Name => throw new NotImplementedException();
+    public string Name { get; init; }
 
-    public IEnumerator<KeyValuePair<string, string>> GetEnumerator()
+    public HtmlElement(string name, HtmlTagType type = HtmlTagType.Single)
     {
-        throw new NotImplementedException();
+        type = Type;
+        Name = name;
+        _params = new();
     }
 
-    IEnumerator IEnumerable.GetEnumerator()
+    public HtmlElement(string name, Dictionary<string, string> @params, HtmlTagType type = HtmlTagType.Single)
     {
-        throw new NotImplementedException();
+        type = Type;
+        Name = name;
+        _params = @params;
     }
+
+    public IEnumerator<KeyValuePair<string, string>> GetEnumerator() => _params.GetEnumerator();
+
+    IEnumerator IEnumerable.GetEnumerator() => _params.GetEnumerator();
 }
