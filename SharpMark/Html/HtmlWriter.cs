@@ -35,7 +35,7 @@ public class HtmlWriter
             Indent(elem);
     }
 
-    public void Up() => Out.WriteLine($"</{IndentStack.Pop()}>");
+    public void Up() => Out.WriteLine($"{_indent = _indent[..^IndentStr.Length]}</{IndentStack.Pop()}>");
 
     private void Indent(IHtmlElement elem)
     {

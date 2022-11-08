@@ -13,14 +13,14 @@ public class HtmlElement : IHtmlElement
 
     public HtmlElement(string name, HtmlTagType type = HtmlTagType.Single)
     {
-        type = Type;
+        Type = type;
         Name = name;
         _params = new();
     }
 
     public HtmlElement(string name, Dictionary<string, string> @params, HtmlTagType type = HtmlTagType.Single)
     {
-        type = Type;
+        Type = type;
         Name = name;
         _params = @params;
     }
