@@ -20,6 +20,12 @@ public class HtmlWriter
 
     public void Write(IHtmlElement elem)
     {
+        if (elem.Type == HtmlElementType.Plain)
+        {
+            Out.WriteLine(elem["value"].Replace("\n", '\n' + _indent));
+            return;
+        }
+
         Out.Write($"{_indent}<{elem.Name}");
         foreach (var kvp in elem)
             Out.Write($" {kvp.Key}=\"{kvp.Value}\"");
